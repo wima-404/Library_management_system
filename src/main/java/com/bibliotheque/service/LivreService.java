@@ -18,10 +18,16 @@ public class LivreService {
     @Autowired
     private LivreRepository livreRepository;
 
+
+
     public List<LivreDTO> getAllLivres() {
         return livreRepository.findAll().stream()
                 .map(this::convertToDTO)
                 .collect(Collectors.toList());
+    }
+    public Optional<LivreDTO> getLivreById(Long id) {
+        return livreRepository.findById(id)
+                .map(this::convertToDTO);
     }
 
     private LivreDTO convertToDTO(Livre livre) {
